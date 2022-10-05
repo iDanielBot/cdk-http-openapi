@@ -1,0 +1,77 @@
+{
+  "name": "cdk-http-openapi",
+  "version": "0.0.0-development",
+  "description": "CDK Construct that lets you build AWS Api Gateway Http Api, backed by Lambdas, based on a OpenAPI spec file.",
+  "scripts": {
+    "build": "jsii",
+    "watch": "jsii -w",
+    "package": "jsii-pacmak -vv",
+    "cdk": "cdk",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prerelease": "npm run build && npm run package && standard-version",
+    "postrelease": "git push && git push --tags"
+  },
+  "main": "lib/index.js",
+  "types": "lib/types.d.ts",
+  "repository": "https://github.com/iDanielBot/cdk-http-openapi.git",
+  "homepage": "https://github.com/iDanielBot/cdk-http-openapi",
+  "author": {
+    "name": "iDanielBot",
+    "email": "botdaniel11@gmail.com",
+    "url": "https://idanielbot.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "cdk",
+    "openapi",
+    "lambda",
+    "API",
+    "Api Gateway",
+    "http",
+    "constructs",
+    "reusable cdk constructs"
+  ],
+  "jsii": {
+    "outdir": "dist",
+    "versionFormat": "short",
+    "targets": {},
+    "tsc": {
+      "rootDir": "./src/",
+      "outDir": "lib"
+    }
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "dependencies": {
+    "yaml": "2.1.3"
+  },
+  "bundledDependencies": [
+    "yaml"
+  ],
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
+    "@types/node": "^17.0.21",
+    "@typescript-eslint/parser": "^5.15.0",
+    "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "@aws-cdk/aws-apigatewayv2-alpha": "2.44.0-alpha.0",
+    "aws-cdk-lib": "2.44.0",
+    "constructs": "10.1.122",
+    "jsii": "^1.55.1",
+    "jsii-pacmak": "^1.55.1",
+    "prettier": "^2.6.0",
+    "standard-version": "^9.3.2",
+    "typescript": "^4.6.2"
+  },
+  "peerDependencies": {
+    "@aws-cdk/aws-apigatewayv2-alpha": "2.44.0-alpha.0",
+    "aws-cdk-lib": "2.44.0",
+    "constructs": "10.1.122"
+  }
+}
