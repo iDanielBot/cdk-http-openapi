@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/iDanielBot/cdk-http-openapi/compare/v0.0.3...v0.1.0) (2022-10-06)
+
+
+### Bug Fixes
+
+* pick types from lib/index.t.ts ([2e180fc](https://github.com/iDanielBot/cdk-http-openapi/commit/2e180fcffe30e9cc778ed8ec5465e3d60a069369))
+
 ### [0.0.3](https://github.com/iDanielBot/cdk-http-openapi/compare/v0.0.2...v0.0.3) (2022-10-06)
 
 
