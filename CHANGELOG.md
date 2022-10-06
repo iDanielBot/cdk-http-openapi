@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/iDanielBot/cdk-http-openapi/compare/v0.1.0...v0.1.1) (2022-10-06)
+
+
+### Bug Fixes
+
+* make custom authorizer optional and give access to cfnApi ([cea7f34](https://github.com/iDanielBot/cdk-http-openapi/commit/cea7f34af7b4d5eb5cfda554ee1e86e3d9997145))
+* remove trailing colon from prerelease script ([77152ac](https://github.com/iDanielBot/cdk-http-openapi/commit/77152ac7267f6ea200e80728c9a2e13e7117ed29))
+
 ## [0.1.0](https://github.com/iDanielBot/cdk-http-openapi/compare/v0.0.3...v0.1.0) (2022-10-06)
 
 

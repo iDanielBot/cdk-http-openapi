@@ -1,6 +1,6 @@
 {
   "name": "cdk-http-openapi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CDK Construct that lets you build AWS Api Gateway Http Api, backed by Lambdas, based on a OpenAPI spec file.",
   "scripts": {
     "build": "jsii",
