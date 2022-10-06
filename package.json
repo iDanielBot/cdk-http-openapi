@@ -12,7 +12,7 @@
     "pre-release": "npm run build && npm run package",
     "pre-release:dryrun": "npm run pre-release && standard-version --dry-run",
     "pre-release:minor": "npm run pre-release && standard-version --pre-release --release-as=minor",
-    "prerelease:": "npm run pre-release && standard-version --pre-release",
+    "prerelease": "npm run pre-release && standard-version --pre-release",
     "postrelease": "git push && git push --tags"
   },
   "main": "lib/index.js",
