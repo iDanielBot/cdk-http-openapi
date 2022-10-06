@@ -9,11 +9,14 @@
     "cdk": "cdk",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "prerelease": "npm run build && npm run package && standard-version --pre-release",
+    "pre-release": "npm run build && npm run package",
+    "pre-release:dryrun": "npm run pre-release && standard-version --dry-run",
+    "pre-release:minor": "npm run pre-release && standard-version --pre-release --release-as=minor",
+    "prerelease:":"npm run pre-release && standard-version --pre-release",
     "postrelease": "git push && git push --tags"
   },
   "main": "lib/index.js",
-  "types": "lib/types.d.ts",
+  "types": "lib/index.d.ts",
   "repository": "https://github.com/iDanielBot/cdk-http-openapi.git",
   "homepage": "https://github.com/iDanielBot/cdk-http-openapi",
   "author": {
