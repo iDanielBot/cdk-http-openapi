@@ -156,18 +156,18 @@ export class HttpOpenApi extends Construct {
   ) {
     const certificate = acm.Certificate.fromCertificateArn(
       this,
-      'SLSCertificate',
+      'DomainCertificate',
       certificateArn
     )
 
-    const domainName = new DomainName(this, 'SLSDomainName', {
+    const domainName = new DomainName(this, 'CustomDomainName', {
       domainName: customDomainName,
       certificate
     })
 
     const routeConfig: route53.ARecordProps = {
       recordName: customDomainName,
-      zone: route53.HostedZone.fromLookup(this, 'SLSZoneLookup', {
+      zone: route53.HostedZone.fromLookup(this, 'ZoneLookup', {
         domainName: zoneName
       }),
       target: route53.RecordTarget.fromAlias({
@@ -177,10 +177,10 @@ export class HttpOpenApi extends Construct {
         })
       })
     }
-    const aRecord = new route53.ARecord(this, 'SLSCustomDomainARecord', routeConfig)
-    const aaaaRecord = new route53.AaaaRecord(this, 'SLSCustomDomainAAAARecord', routeConfig)
+    const aRecord = new route53.ARecord(this, 'CustomDomainARecord', routeConfig)
+    const aaaaRecord = new route53.AaaaRecord(this, 'CustomDomainAAAARecord', routeConfig)
 
-    const apiMapping = new apigwv2.CfnApiMapping(this, 'SLSMapping', {
+    const apiMapping = new apigwv2.CfnApiMapping(this, 'CustomDomainApiMapping', {
       apiId: this.cfnApi.ref,
       domainName: customDomainName,
       stage: this.apiStage.stageName
