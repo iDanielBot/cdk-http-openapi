@@ -21,24 +21,24 @@ export class HttpOpenApi extends Construct {
   /**
    *  Api Resource being created based on openAPI definition
    */
-  private readonly cfnApi: apigwv2.CfnApi
+  public readonly cfnApi: apigwv2.CfnApi
 
   /**
    * Default stage being created & deployed for the API
    */
-  private readonly apiStage: apigwv2.CfnStage
+  public readonly apiStage: apigwv2.CfnStage
 
   /**
    * Maps operationId to lambda Function that is being created
    */
   public readonly functions: Record<string, lambda.Function>
 
-  private readonly permissions: Record<string, lambda.CfnPermission>
+  public readonly permissions: Record<string, lambda.CfnPermission>
 
   /**
    * Maps operationId to http path and method - for routing purposes
    */
-  private readonly methodMappings: Record<string, MethodMapping>
+  public readonly methodMappings: Record<string, MethodMapping>
 
   constructor (scope: Construct, id: string, props: HttpApiProps) {
     super(scope, id)

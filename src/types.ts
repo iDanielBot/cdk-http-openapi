@@ -35,7 +35,7 @@ export interface HttpApiProps {
   /**
    * ARN of the lambda to be used as a custom authorizer for your requests
    */
-  readonly customAuthorizerLambdaArn: string
+  readonly customAuthorizerLambdaArn?: string
 
   /**
    * Directory path for locating lambas source code.
