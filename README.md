@@ -27,35 +27,49 @@ yarn add -D cdk-http-openapi
 
 ```typescript
 import { HttpOpenApi } from 'cdk-http-openapi'
+import { Construct } from 'constructs'
+import { Stack } from 'aws-cdk-lib'
 
-// ... in your stack definition
-const api = new HttpOpenApi(this, 'MyApi', {
-    serviceName: 'my-service',
-    openApiSpec: './openapi.yml',
-    lambdasSourcePath: './dist/src' // optional. It defaults to './.build/src'
-    integrations: [
+export class MyServiceStack extends Stack {
+  constructor(
+    scope: Construct,
+    id: string,
+  ) {
+    super(scope, id)
+    // other resources for your microservice
+
+    // define your API + lambdas
+    const api = new HttpOpenApi(this, 'MyApi', {
+      functionNamePrefix: 'cool-api',
+      openApiSpec: './openapi.yml',
+      lambdasSourcePath: './dist/src', // optional. It defaults to './.build/src'
+      integrations: [
         {
-            operationId: 'getEntity', // for each operation you define in your OpenAPI spec
-            handler: 'api.getEntity', // you can register a lambda handler to handle your http request
+          operationId: 'getEntity', // for each operation you define in your OpenAPI spec
+          handler: 'api.getEntity', // you can register a lambda handler to handle your http request
         },
         {
-            operationId: 'storeEntity',
-            handler: 'api.storeEntity',
-            timeoutSeconds: 5,
-            memorySize: 512,
-            env: { 
-                DB_HOST: '...',
-                DB_USERNAME: '...',
-                DB_PASSWORD: '...'
-            },
+          operationId: 'storeEntity',
+          handler: 'api.storeEntity',
+          timeoutSeconds: 5,        // timeout configuration for lambda
+          memorySize: 512,          // memory configuration for lambda
+          env: {                    // you can also inject ENV variables into your lambda
+            DB_HOST: '...',
+            DB_USERNAME: '...',
+            DB_PASSWORD: '...'
+          },
         }
-    ]
-});
+      ]
+    });
 
-const domainName = 'my-awesome-api.cool.io';
-const certificateArn = `arn:aws:acm:${AWS_REGION}:${AWS_ACCOUNT}:certificate/${CERTIFICATE_ID}`;
-const hostedZone = 'cool.io';
+    const domainName = 'my-awesome-api.cool.io';
+    const certificateArn = `arn:aws:acm:${AWS_REGION}:${AWS_ACCOUNT}:certificate/${CERTIFICATE_ID}`;
+    const hostedZone = 'cool.io';
 
-api.enableCustomDomain({domainName, certificateArn, hostedZone});
+    api.enableCustomDomain(domainName, certificateArn, hostedZone);
+  }
+}
+
+
 
 ```
