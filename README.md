@@ -5,12 +5,12 @@ CDK Construct that lets you build AWS Api Gateway Http Api, backed by Lambdas, b
 
 # Features
 
-[] Deploy Api Gateway Http Api based on a OpenAPI spec file.
-[] Each API Route will be backed by 1 NodeJS lambda.
-[] Configure CORS for your API.
-[] Add custom domain (eg: https://my-awesome-api.my-domain.com) to your API.
-[] Enable custom authorizers to Http Api Lambda integrations.
-[] Customize your lambdas's memory, timeouts, log retention, env variables and other stuff.
+- [x] Deploy Api Gateway Http Api based on a OpenAPI spec file.
+- [x] Each API Route will be backed by 1 NodeJS lambda.
+- [x] Configure CORS for your API.
+- [x] Add custom domain (eg: https://my-awesome-api.my-domain.com) to your API.
+- [x] Enable custom authorizers to Http Api Lambda integrations.
+- [x] Customize your lambdas's memory, timeouts, log retention, env variables and other stuff.
 
 
 # Setup
