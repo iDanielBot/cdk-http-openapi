@@ -23,7 +23,10 @@ yarn add -D cdk-http-openapi
 ```
 
 
-# Start using cdk constructs in your infrastructure definition <br>Examples
+# Start using cdk constructs in your infrastructure definition
+# Examples
+
+## 1. Define an Http API + 1 lambda for each route
 
 ```typescript
 import { HttpOpenApi } from 'cdk-http-openapi'
@@ -62,14 +65,65 @@ export class MyServiceStack extends Stack {
       ]
     });
 
-    const domainName = 'my-awesome-api.cool.io';
-    const certificateArn = `arn:aws:acm:${AWS_REGION}:${AWS_ACCOUNT}:certificate/${CERTIFICATE_ID}`;
-    const hostedZone = 'cool.io';
-
-    api.enableCustomDomain(domainName, certificateArn, hostedZone);
   }
 }
 
+```
 
+## 2. Enable Custom Domain for your API: my-awesome-api.cool.io
 
+```typescript
+const api = new HttpOpenApi(this, 'MyApi', {
+    ...
+})
+
+const domainName = 'my-awesome-api.cool.io';
+const certificateArn = `arn:aws:acm:${AWS_REGION}:${AWS_ACCOUNT}:certificate/${CERTIFICATE_ID}`;
+const hostedZone = 'cool.io';
+
+api.enableCustomDomain(domainName, certificateArn, hostedZone);
+```
+
+## 3. Configure wildcard CORS (allow '*')
+```typescript
+const api = new HttpOpenApi(this, 'MyApi', {
+    functionNamePrefix: 'my-service',
+    openApiSpec: './openapi.yml',
+
+    // ... other props
+
+    corsAllowAllOrigins: true,
+    
+});
+
+```
+
+## 4. Configure CORS more specific
+```typescript
+const api = new HttpOpenApi(this, 'MyApi', {
+    functionNamePrefix: 'my-service',
+    openApiSpec: './openapi.yml',
+
+    // ... other props
+
+    // See AWS Docs for more info: https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-cors.html
+    corsConfig: {
+        allowMethods: ['GET', 'POST'],
+        allowHeaders: ['application/json', 'authorization'],
+        allowOrigins: ['https://my-frontend.com']
+    }
+});
+```
+
+## 5. Enable Customer Authorizer Lambda for your endpoints
+```typescript
+const api = new HttpOpenApi(this, 'MyApi', {
+    functionNamePrefix: 'my-service',
+    openApiSpec: './openapi.yml',
+
+    // ... other props
+    
+    customAuthorizerLambdaArn: `arn:aws:lambda:${AWS_REGION}:${AWS_ACCOUNT}:function:${AUTHORIZER_LAMBDA_NAME}`
+   
+});
 ```
